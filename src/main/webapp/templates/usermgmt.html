@@ -1,0 +1,41 @@
+<div class="container-fluid" id="user-management">
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="form-wrap-noborder">
+                <a href="#/dashboard">← Return to the dashboard</a>
+                <h3>User Management</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td class="col-email">Email</td>
+                            <td>First name</td>
+                            <td>Last name</td>
+                            <td>Status</td>
+                            <td>User</td>
+                            <td>Manager</td>
+                            <td>Admin</td>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="user in userList">
+                       <td class="col-email">{{user.email}}</td>
+                       <td>{{user.firstName}}</td>
+                       <td>{{user.lastName}}</td>
+
+                       <td ng-show="user.active" class="green">ACTIVE</td>
+                       <td ng-show="!user.active" class="red">BLOCKED</td>
+
+                       <td><input ng-disabled="!isAdmin" type="checkbox" ng-checked="hasRole(user,'ROLE_USER')" ng-click="toggleRole(user,'ROLE_USER')" /></td>
+                       <td><input ng-disabled="!isAdmin" type="checkbox" ng-checked="hasRole(user,'ROLE_MANAGER')" ng-click="toggleRole(user,'ROLE_MANAGER')" /></td>
+                       <td><input ng-disabled="!isAdmin" type="checkbox" ng-checked="hasRole(user,'ROLE_ADMIN')" ng-click="toggleRole(user,'ROLE_ADMIN')" /></td>
+
+                       <td ng-show="user.active"><button class="btn btn-link" ng-click="blockUser(user)">Block</button></td>
+                       <td ng-show="!user.active"><button class="btn btn-link" ng-click="unblockUser(user)">Unblock</button></td>
+                    </tr>
+                </table>
+                <br/>
+                <p>All changes are saved automatically.</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calorie Counter</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body ng-app="calorieCounterApp">
+    <div class="table-main">
+        <section ui-view="header" ng-cloak="" class="header-content"></section>
+        <section ui-view="content" ng-cloak="" class="main-content"></section>
+    </div>
+
+    <!-- bower dependencies-->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <!-- app scripts-->
+    <script src="scripts/app/app.js"></script>
+
+    <script src="scripts/components/auth/auth.service.js"></script>
+    <script src="scripts/components/auth/principal.service.js"></script>
+    <script src="scripts/components/auth/account.service.js"></script>
+    <script src="scripts/components/auth/provider/auth.session.service.js"></script>
+    <script src="scripts/components/interceptor/auth.interceptor.js"></script>
+    <script src="scripts/components/meal/meal.service.js"></script>
+    <script src="scripts/components/settings/settings.service.js"></script>
+    <script src="scripts/components/usermanagement/usermgmt.service.js"></script>
+    <script src="scripts/components/filter/total.filter.js"></script>
+
+    <script src="scripts/app/auth/login/login.js"></script>
+    <script src="scripts/app/auth/login/login.controller.js"></script>
+    <script src="scripts/app/auth/register/register.js"></script>
+    <script src="scripts/app/auth/register/register.controller.js"></script>
+    <script src="scripts/app/main/main.js"></script>
+    <script src="scripts/app/main/main.controller.js"></script>
+    <script src="scripts/app/dashboard/dashboard.js"></script>
+    <script src="scripts/app/dashboard/dashboard.controller.js"></script>
+    <script src="scripts/app/usermgmt/usermgmt.js"></script>
+    <script src="scripts/app/usermgmt/usermgmt.controller.js"></script>
+    <script src="scripts/app/settings/settings.js"></script>
+    <script src="scripts/app/settings/settings.controller.js"></script>
+    <script src="scripts/app/header/header.controller.js"></script>
+    <script src="scripts/app/error/error.js"></script>
+</body>
+</html>

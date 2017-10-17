@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row" style="padding-top: 0;">
+        <div class="col-xs-12">
+            <div class="form-wrap-noborder">
+
+                <h1><a href="#/dashboard">Calorie Counter</a></h1>
+                <div class="user-controls">
+                    <div style="background-image: url('{{userSettings.profileImageUrl}}')" alt="" class="userpic"/>
+                    <span>{{currentUser.firstName}} {{currentUser.lastName}}</span>
+                    <div class="user-controls-links">
+                        <a href="#/settings">Settings</a>
+                        <a ng-show="isManager" href="#/usermgmt">User Management</a>
+                        <a href="#" ng-click="logout($event)">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

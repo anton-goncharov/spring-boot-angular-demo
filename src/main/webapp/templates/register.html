@@ -1,0 +1,46 @@
+<div class="container-fluid" id="register">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="form-wrap">
+				<h1>Register a new account</h1>
+				
+				<div class="alert alert-danger" ng-show="error">
+                	<strong>Registration failed!</strong> Please try again later.
+            	</div>
+				<div class="alert alert-danger" ng-show="errorUserExists">
+					User with this email already exists.
+				</div>
+            	<div class="alert alert-danger" ng-show="doNotMatch">
+                	The password and its confirmation do not match!
+            	</div>
+
+				<form ng-show="!success" name="form" role="form" novalidate ng-submit="register()"  autocomplete="off">
+					<div class="form-group">
+						<label for="email" class="sr-only">E-mail</label><input type="text" class="form-control" id="email" name="email"
+							placeholder="Email" ng-model="registerAccount.user.email" required />
+					</div>
+					<div class="form-group">
+						<label for="firstName" class="sr-only">First Name</label><input type="text" class="form-control" id="firstName" name="firstName"
+							placeholder="First Name" ng-model="registerAccount.user.firstName" required />
+					</div>
+					<div class="form-group">
+						<label for="lastName" class="sr-only">Last Name</label><input type="text" class="form-control" id="lastName" name="lastName"
+							placeholder="Last Name" ng-model="registerAccount.user.lastName" required />
+					</div>
+					<div class="form-group">
+						<label for="password" class="sr-only">New Password</label><input type="password" class="form-control" id="password" name="password"
+							placeholder="New Password" ng-model="registerAccount.password" required />
+						<!--<password-strength-bar password-to-check="registerAccount.password"></password-strength-bar>-->
+					</div>
+					<div class="form-group">
+						<label for="confirmPassword" class="sr-only">Confirm Password</label><input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+							placeholder="Confirm Password" ng-model="confirmPassword" required />
+					</div>														
+					
+					<button type="submit" ng-disabled="form.$invalid" class="btn btn-primary btn-md">Sign Up</button>
+					<p class="loading" ng-show="isRequestInProgress"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Please wait</p>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

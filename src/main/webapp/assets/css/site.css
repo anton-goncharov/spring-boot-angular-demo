@@ -1,0 +1,314 @@
+a {
+    border-bottom: 1px solid #337ab7;
+}
+
+a:hover {
+    border-bottom: 1px solid #235272;
+    text-decoration: none;
+}
+
+section {
+    margin: 50px 0 0 50px;
+}
+
+h1, h2, h3 {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+
+/* login */
+
+section div#login {
+    width: 500px;
+}
+
+section div#login h1 {
+    margin: 0 0 50px 0;
+}
+
+section div#login .btn {
+    margin-bottom: 10px;
+}
+
+
+/* register */
+
+section div#register {
+    width: 500px;
+}
+
+section div#register h1 {
+    margin: 0 0 50px 0;
+}
+
+/* header */
+section[ui-view=header] div h1 {
+    font-weight: 200;
+    font-size: 46px;
+    margin: 0 0 10px 0;
+}
+
+section[ui-view=header] div h1 a, section[ui-view=header] div h1 a:hover, section[ui-view=header] div h1 a:visited {
+    color: #000;
+    text-decoration: none;
+    border: none;
+}
+
+.user-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+}
+
+.user-controls .userpic {
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+
+.user-controls span {
+    margin: 0 0 10px 12px;
+}
+
+.user-controls .user-controls-links {
+    display: inline-block;
+    margin: 0 0 4px 12px;
+    width: 300px;
+    position: relative;
+}
+
+.user-controls .user-controls-links a {
+    margin-right: 5px;
+}
+
+.user-controls .user-controls-links a:focus {
+    text-decoration: none;
+}
+
+/* dashboard */
+
+section[ui-view=content], section[ui-view=content] .row {
+    margin-top: 0;
+}
+
+section div#dashboard h3 {
+    margin: 0 0 10px 0;
+    font-weight: 100;
+}
+
+.list-controls .btn-link {
+    margin: 10px 0 0 0;
+    padding: 10px 10px 10px 0;
+}
+
+.list-controls .btn-link span {
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 1px dashed darkblue;
+}
+
+.list-controls .btn-link.selected span {
+    color: #000;
+    border-bottom: none;
+}
+
+.list-controls .btn-link.selected {
+    cursor: auto;
+    pointer-events: none;
+}
+
+.list-controls .btn-link:hover {
+    text-decoration: none;
+}
+
+.list-controls .btn-link:focus{
+    text-decoration: none;
+    outline: none;
+}
+
+/* add new entry form */
+
+.add-new-entry {
+    margin-top: -30px;
+}
+
+.add-new-entry input#addMealName {
+    width: 200px;
+}
+.add-new-entry input#addMealCalories {
+    width: 100px;
+}
+.add-new-entry input#addMealDate {
+    width: 100px;
+}
+.add-new-entry input[ng-model=hours], .add-new-entry input[ng-model=minutes] {
+    width: 50px;
+}
+
+.add-new-entry form #add-submit {
+    margin-left: 10px;
+}
+
+/* filter form */
+
+.filter-bar {
+    margin-top: -30px;
+}
+
+.filter-bar input#filterFrom, .filter-bar input#filterTo {
+    width: 100px;
+}
+
+.filter-bar div.input-group input[ng-model=hours], .filter-bar div.input-group input[ng-model=minutes] {
+    width: 50px;
+}
+
+.filter-bar #filter-to-time, .filter-bar #filter-from-time, .filter-bar #filter-to-date {
+    margin-left: 20px;
+}
+
+.filter-bar #filter-apply {
+    margin-left: 20px;
+}
+
+/* meals by day table */
+
+section div#dashboard div.day table tr {
+    -o-transition:.3s;
+    -ms-transition:.3s;
+    -moz-transition:.3s;
+    -webkit-transition:.3s;
+    transition:.3s;
+    height: 25px;
+}
+
+section div#dashboard div.day table tr td {
+    padding: 4px;
+}
+
+section div#dashboard div.day table tr td button {
+    height: 18px;
+    padding: 0 10px 0 10px;
+    margin-top: -4px;
+}
+
+section div#dashboard div.day table tr:hover {
+    background-color: #F2F2F2;
+    cursor: pointer;
+}
+
+section div#dashboard div.day table tr.row-selected {
+    background-color: #E6E6E6;
+}
+
+section div#dashboard div.day table tr.row-total:hover {
+    background-color: white;
+    cursor: auto;
+}
+
+section div#dashboard div.day table tr td.meal-time {
+    width: 60px;
+}
+
+section div#dashboard div.day table tr td.meal-name {
+    width: 300px;
+}
+
+section div#dashboard div.day table tr.row-total {
+    font-weight: bold;
+}
+
+section div#dashboard div.day table tr td.lessThanExpected {
+    color: green;
+}
+
+section div#dashboard div.day table tr td.lessThanExpected.tip, section div#dashboard div.day table tr td.moreThanExpected.tip {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+section div#dashboard div.day table tr td.moreThanExpected {
+    color: darkred;
+}
+
+section div#dashboard div.day table tr td input.edit-name {
+    width: 200px;
+}
+
+section div#dashboard div.day table tr td input.edit-calories {
+    width: 60px;
+}
+
+section div#dashboard .pager {
+    width: 550px;
+}
+
+/* settings */
+section[ui-view=content] #settings h3 {
+    font-weight: 200;
+}
+
+section[ui-view=content] #settings #settings-form {
+    margin-top: 30px;
+}
+
+/* user management */
+section[ui-view=content] #user-management h3 {
+    font-weight: 200;
+}
+
+section[ui-view=content] #user-management table thead {
+    font-weight: bold;
+}
+
+section[ui-view=content] #user-management table tr td {
+    min-width: 80px;
+}
+
+section[ui-view=content] #user-management table tr td.col-email {
+    width: 150px;
+}
+
+section[ui-view=content] #user-management table tr td.green {
+    color: green;
+}
+
+section[ui-view=content] #user-management table tr td.red {
+    color: red;
+}
+
+section[ui-view=content] #user-management table tr {
+    height: 30px;
+}
+
+/* progress spinner */
+
+p.loading {
+    -o-transition:.3s;
+    -ms-transition:.3s;
+    -moz-transition:.3s;
+    -webkit-transition:.3s;
+    transition:.3s;
+}
+
+p.loading span {
+    margin: 5px;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}

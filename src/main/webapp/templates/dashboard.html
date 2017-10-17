@@ -1,0 +1,136 @@
+<div class="container-fluid" id="dashboard">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-wrap-noborder">
+
+                <div class="list-controls">
+                    <button class="btn btn-link btn-md" ng-click="onAddNewEntryClick()" ng-class="{selected: showAddPanel}"><span>Add new entry</span></button>
+                    <button class="btn btn-link btn-md" ng-click="onFilterClick()" ng-class="{selected: showFilterPanel}"><span>Filter</span></button>
+                </div>
+
+                <div class="add-new-entry" ng-show="showAddPanel">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input class="form-control" id="addMealName" ng-model="addNewEntryForm.name" ng-change="onAddEntryEdit()" placeholder="Meal name">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="addMealCalories" ng-model="addNewEntryForm.calories" ng-change="onAddEntryEdit()" placeholder="Calories">
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" id="addMealDate" class="form-control" uib-datepicker-popup
+                                       ng-model="addNewEntryForm.date" class="well well-sm" is-open="addDtPopupOpened"
+                                       datepicker-options="dateOptions" show-button-bar="false"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openAddDtPopup()">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div uib-timepicker ng-model="addNewEntryForm.time" hour-step="1"
+                                 minute-step="30" show-meridian="false"></div>
+                        </div>
+                        <button id="add-submit" class="btn btn-primary" ng-disabled="!(isAddNewEntryValid && addNewEntryForm.date && addNewEntryForm.time)" ng-click="addNewEntrySubmit()">Add</button>
+                        <p class="loading" ng-show="isAddRequestInProgress"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Please wait</p>
+                    </form>
+
+                </div>
+
+                <div class="filter-bar" ng-show="showFilterPanel">
+                    <form class="form-inline">
+                        <!--from date-->
+                        <div class="form-group">
+                            <label>From</label>
+                            <div class="input-group">
+                                <input type="text" id="filterFrom" class="form-control" uib-datepicker-popup
+                                       ng-model="filter.fromDate" class="well well-sm" is-open="filterFromPopupOpened"
+                                       datepicker-options="dateOptions" show-button-bar="false"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openFilterFromPopup()">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <!--to date-->
+                        <div class="form-group" id="filter-to-date">
+                            <label>To</label>
+                            <div class="input-group">
+                                <input type="text" id="filterTo" class="form-control" uib-datepicker-popup
+                                       ng-model="filter.toDate" class="well well-sm" is-open="filterToPopupOpened"
+                                       datepicker-options="dateOptions" show-button-bar="false"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openFilterToPopup()">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--from time-->
+                        <div class="form-group" id="filter-from-time">
+                            <label>From</label>
+                            <div class="input-group">
+                                <div uib-timepicker ng-model="filter.fromTime" hour-step="1"
+                                     minute-step="30" show-meridian="false"></div>
+                            </div>
+                        </div>
+
+                        <!--to time-->
+                        <div class="form-group" id="filter-to-time">
+                            <label>To</label>
+                            <div class="input-group">
+                                <div uib-timepicker ng-model="filter.toTime" hour-step="1"
+                                     minute-step="30" show-meridian="false"></div>
+                            </div>
+                        </div>
+
+                        <button id="filter-apply" class="btn btn-primary" ng-disabled="!(filter.toTime && filter.fromTime && filter.toDate && filter.fromDate)"
+                                ng-click="filterApply()">Apply</button>
+                        <button id="filter-discard" class="btn btn-danger" ng-disabled="!isFilterApplied" ng-click="filterDiscard()">Discard</button>
+                        <p class="loading" ng-show="isFilterRequestInProgress"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Please wait</p>
+                    </form>
+                </div>
+
+                <div ng-repeat="day in meals.dayMealsList" class="day">
+                    <h3>{{day.date}}</h3>
+                    <table>
+                        <tr ng-repeat="meal in day.meals" id="meal-{{meal.id}}" ng-click="selectRow(meal.id)" ng-class="{'row-selected': (selectedId == meal.id)}">
+                            <td ng-if-start="(inEditMode != meal.id)" class="meal-time">{{meal.mealDate | date:'HH:mm'}}</td>
+                            <td class="meal-name">{{meal.name}}</td>
+                            <td>{{meal.calories}} kcal</td>
+                            <td ng-if-end><button class="btn btn-link" ng-show="(selectedId == meal.id)" ng-click="onEditClick($event,meal)">Edit</button>
+                            <button class="btn btn-link" ng-show="(selectedId == meal.id)" ng-click="onDeleteClick($event,meal.id)">Delete</button></td>
+
+                            <td ng-if-start="(inEditMode == meal.id)" class="meal-time">{{meal.mealDate | date:'HH:mm'}}</td>
+                            <td class="meal-name"><input type="text" class="edit-name" ng-model="meal.newName" ng-click="onEditInputClick($event)"></td>
+                            <td><input type="text" class="edit-calories" ng-model="meal.newCalories" ng-click="onEditInputClick($event)"></td>
+                            <td ng-if-end><button class="btn btn-link" ng-show="(inEditMode == meal.id)" ng-click="onSubmitEditClick(meal)">Submit</button></td>
+                        </tr>
+                        <tr ng-show="day.meals.length > 0" class="row-total">
+                            <td class="meal-time"></td>
+                            <td class="meal-name"></td>
+                            <td ng-class="{ 'moreThanExpected': userSettings.expectedCalories && ((day.meals | totalFilter) > userSettings.expectedCalories),
+                                            'lessThanExpected': userSettings.expectedCalories && ((day.meals | totalFilter) < userSettings.expectedCalories)}">
+                                {{day.meals | totalFilter}} kcal
+                            </td>
+                            <td class="moreThanExpected tip" ng-show="userSettings.expectedCalories && ((day.meals | totalFilter) > userSettings.expectedCalories)">↑ {{(day.meals | totalFilter) - userSettings.expectedCalories}} more than expected</td>
+                            <td class="lessThanExpected tip" ng-show="userSettings.expectedCalories && ((day.meals | totalFilter) < userSettings.expectedCalories)">↓ {{userSettings.expectedCalories - (day.meals | totalFilter)}} less than expected</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <nav>
+                    <ul class="pager">
+                        <li class="previous" ng-show="hasPrevious()"><a href="#" ng-click="prev($event)"><span aria-hidden="true">&larr;</span> Older</a></li>
+                        <li class="next" ng-show="hasNext()"><a href="#" ng-click="next($event)">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
