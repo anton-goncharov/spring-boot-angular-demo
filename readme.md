@@ -1,6 +1,5 @@
 Calorie Counter Application
 ===
-Developed as a part of the Toptal screening process.
 
 #### Technologies:
 * Java 8
