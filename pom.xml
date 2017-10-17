@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 
 	<name>CalorieCounter</name>
-	<description>Calorie counter project for Toptal interview</description>
+	<description>Calorie counter project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
