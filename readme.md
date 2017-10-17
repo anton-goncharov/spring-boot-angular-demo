@@ -20,5 +20,3 @@ Designed to work with MySQL 5+ database.
 5. Browse to [localhost:8080](localhost:8080)
 
 Default admin username: __admin@mail.com__, password: __123__
-
-Anton Goncharov [goncharov.antn@gmail.com](mailto:goncharov.antn@gmail.com)
